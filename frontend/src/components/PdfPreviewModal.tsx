@@ -31,7 +31,7 @@ export const PdfPreviewModal: React.FC<PdfPreviewModalProps> = ({ blob, filename
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      <div className="w-full max-w-5xl h-[85vh] flex flex-col overflow-hidden rounded-2xl glass-panel border border-slate-200/80 dark:border-slate-800/80 shadow-2xl">
+      <div className="w-full max-w-5xl h-[100dvh] sm:h-[85vh] max-h-[95dvh] sm:max-h-none flex flex-col overflow-hidden rounded-2xl glass-panel border border-slate-200/80 dark:border-slate-800/80 shadow-2xl">
         {/* Header */}
         <div className="shrink-0 flex items-center justify-between gap-3 p-4 border-b border-slate-200 dark:border-slate-800">
           <div className="flex items-center gap-3 min-w-0">

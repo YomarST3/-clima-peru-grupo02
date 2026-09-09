@@ -490,7 +490,7 @@ export const PeruMap: React.FC<PeruMapProps> = ({
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
         
         {/* Map Canvas */}
-        <div className="lg:col-span-3 h-[520px] rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 relative shadow-inner">
+        <div className="lg:col-span-3 h-[380px] md:h-[520px] rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 relative shadow-inner">
           <div ref={mapContainerRef} className="w-full h-full" />
           
           {/* Doppler Radar Sweep Overlay (SENAMHI live Doppler animation) */}
@@ -501,7 +501,7 @@ export const PeruMap: React.FC<PeruMapProps> = ({
           )}
 
           {/* Map Legend Floating */}
-          <div className="absolute bottom-3 left-3 z-10 glass-panel p-2.5 rounded-xl text-[10px] space-y-1.5 max-w-[340px] border border-slate-200 dark:border-slate-700/80 shadow-md">
+          <div className="absolute bottom-3 left-3 z-10 glass-panel p-2.5 rounded-xl text-[10px] space-y-1.5 w-[calc(100%-1.5rem)] max-w-[340px] border border-slate-200 dark:border-slate-700/80 shadow-md">
             <div className="flex items-center justify-between gap-1">
               <span className="font-bold text-slate-700 dark:text-slate-300 block">
                 {metric === 'temperature' ? 'Escala Térmica SENAMHI (°C) - Multianual' : metric === 'precipitation' ? 'Precipitación (mm)' : 'Índice UV'}

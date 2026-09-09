@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   X,
   Mail,
@@ -30,6 +30,19 @@ export const AuthModal: React.FC<AuthModalProps> = ({ open, onClose }) => {
 
   const DEFAULT_GOOGLE_CLIENT_ID = '119978105289-3bh4bsvlad5vint3tnlbp9iiu4bprg31.apps.googleusercontent.com';
   const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID || DEFAULT_GOOGLE_CLIENT_ID;
+
+  const googleWrapRef = useRef<HTMLDivElement>(null);
+  const [googleWidth, setGoogleWidth] = useState(360);
+
+  useEffect(() => {
+    const update = () => {
+      const el = googleWrapRef.current;
+      if (el) setGoogleWidth(Math.max(200, Math.min(360, el.clientWidth)));
+    };
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
 
   if (!open) return null;
 
@@ -162,7 +175,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ open, onClose }) => {
 
               {/* Botón Google centrado y responsive */}
               <div className="flex justify-center w-full pt-2">
-                <div className="w-full max-w-[360px] flex justify-center overflow-hidden rounded-full shadow-lg shadow-black/30 hover:opacity-95 transition-opacity">
+                <div ref={googleWrapRef} className="w-full flex justify-center overflow-hidden rounded-full shadow-lg shadow-black/30 hover:opacity-95 transition-opacity">
                   <GoogleLogin
                     onSuccess={handleGoogleSuccess}
                     onError={handleGoogleError}
@@ -170,7 +183,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ open, onClose }) => {
                     shape="pill"
                     size="large"
                     text="continue_with"
-                    width="360"
+                    width={googleWidth}
                   />
                 </div>
               </div>

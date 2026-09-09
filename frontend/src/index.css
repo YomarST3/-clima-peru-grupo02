@@ -224,4 +224,39 @@
   }
 }
 
+/* Oculta el scrollbar manteniendo el desplazamiento (tabs y chips en móvil) */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Anillos de calor más compactos en pantallas pequeñas */
+@media (max-width: 480px) {
+  .heat-wave-ring {
+    animation: heat-wave-expand-sm 2.6s cubic-bezier(0.16, 0.7, 0.35, 1) infinite;
+  }
+
+  @keyframes heat-wave-expand-sm {
+    0% {
+      width: 10px;
+      height: 10px;
+      opacity: 0.95;
+      transform: translate3d(-50%, -50%, 0) scale(0.35);
+    }
+    50% {
+      opacity: 0.55;
+    }
+    100% {
+      width: 55px;
+      height: 55px;
+      opacity: 0;
+      transform: translate3d(-50%, -50%, 0) scale(1.6);
+    }
+  }
+}
+
 

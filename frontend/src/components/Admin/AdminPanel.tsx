@@ -248,7 +248,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = () => {
           </div>
 
           {/* Metric KPI HUD Cards */}
-          <div className="grid grid-cols-3 gap-3 w-full lg:w-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full">
             <div className="px-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/60 backdrop-blur-xl shadow-sm">
               <div className="flex items-center justify-between gap-2 mb-1">
                 <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">Usuarios</span>
@@ -392,7 +392,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = () => {
               >
                 {/* Main User Row */}
                 <div
-                  className="flex items-center gap-3.5 px-6 py-4 cursor-pointer"
+                  className="flex items-center flex-wrap gap-3.5 px-3 sm:px-6 py-4 cursor-pointer"
                   onClick={() => setExpandedId(isExpanded ? null : u.id)}
                 >
                   {/* Expand Chevron */}

@@ -133,7 +133,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <header className="sticky top-0 z-40 w-full glass-panel border-b border-slate-200/80 dark:border-slate-800/80 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 gap-3 sm:gap-4">
+        <div className="flex items-center justify-between flex-wrap gap-y-2 gap-3 sm:gap-4 py-2 sm:h-20 sm:py-0">
           
           {onBackToPortal && (
             <button
@@ -154,15 +154,15 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
             <div>
               <div className="flex items-center gap-1.5">
-                <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-white font-sans">METEO<span className="text-sky-500 dark:text-sky-400">PERÚ</span></span>
-                <span className="px-1.5 py-0.5 text-[10px] font-semibold bg-red-500/15 text-red-600 dark:text-red-400 border border-red-500/30 rounded-md">PRO</span>
+                <span className="text-lg sm:text-xl font-bold tracking-tight text-slate-900 dark:text-white font-sans">METEO<span className="text-sky-500 dark:text-sky-400">PERÚ</span></span>
+                <span className="hidden sm:inline px-1.5 py-0.5 text-[10px] font-semibold bg-red-500/15 text-red-600 dark:text-red-400 border border-red-500/30 rounded-md">PRO</span>
               </div>
               <p className="text-xs text-slate-500 dark:text-slate-400 font-normal hidden sm:block">Datos Meteorológicos del Perú</p>
             </div>
           </div>
 
           {/* Search Box & Quick City Selector */}
-          <div className="flex-1 max-w-md relative" ref={searchRef}>
+          <div className="w-full lg:w-auto lg:flex-1 lg:max-w-md relative order-last lg:order-none mt-2 lg:mt-0" ref={searchRef}>
             <div className="relative">
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
               <input

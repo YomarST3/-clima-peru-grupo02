@@ -247,7 +247,7 @@ export const ClimateAnalysis: React.FC<ClimateAnalysisProps> = ({ cities, select
               {variable === 'precipitation' ? (
                 <BarChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#cbd5e1" className="dark:opacity-20" vertical={false} />
-                  <XAxis dataKey="date" stroke="#64748b" tick={{ fontSize: 11 }} />
+                  <XAxis dataKey="date" stroke="#64748b" tick={{ fontSize: 11 }} interval="preserveStartEnd" />
                   <YAxis stroke="#64748b" tick={{ fontSize: 11 }} unit=" mm" />
                   <Tooltip />
                   <Bar dataKey="precipitation" name="Precipitación Diaria" unit=" mm" fill="#38bdf8" radius={[4, 4, 0, 0]} />
@@ -261,7 +261,7 @@ export const ClimateAnalysis: React.FC<ClimateAnalysisProps> = ({ cities, select
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="#cbd5e1" className="dark:opacity-20" vertical={false} />
-                  <XAxis dataKey="date" stroke="#64748b" tick={{ fontSize: 11 }} />
+                  <XAxis dataKey="date" stroke="#64748b" tick={{ fontSize: 11 }} interval="preserveStartEnd" />
                   <YAxis stroke="#64748b" tick={{ fontSize: 11 }} unit={variable === 'wind' ? ' k/h' : '°C'} />
                   <Tooltip />
                   {variable === 'temperature' ? (
