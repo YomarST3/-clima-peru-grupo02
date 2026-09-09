@@ -1,6 +1,7 @@
 from __future__ import annotations
 import asyncio
 import logging
+import tempfile
 from datetime import datetime
 from pathlib import Path
 from typing import List
@@ -29,10 +30,18 @@ router = APIRouter(prefix="/admin", tags=["Administración"])
 
 # Log persistente para diagnóstico de la ingesta del dataset
 _LOG_DIR = Path(__file__).resolve().parents[2] / "logs"
-_LOG_DIR.mkdir(exist_ok=True)
+try:
+    _LOG_DIR.mkdir(exist_ok=True)
+except OSError:
+    _LOG_DIR = Path(tempfile.gettempdir()) / "clima_peru_logs"
+    _LOG_DIR.mkdir(exist_ok=True)
+
 IMPORT_LOGGER = logging.getLogger("dataset.import")
 if not IMPORT_LOGGER.handlers:
-    _hdl = logging.FileHandler(_LOG_DIR / "import.log", encoding="utf-8")
+    try:
+        _hdl = logging.FileHandler(_LOG_DIR / "import.log", encoding="utf-8")
+    except OSError:
+        _hdl = logging.NullHandler()
     _hdl.setFormatter(logging.Formatter("%(asctime)s %(levelname)s %(message)s"))
     IMPORT_LOGGER.addHandler(_hdl)
     IMPORT_LOGGER.setLevel(logging.INFO)
