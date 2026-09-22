@@ -1,5 +1,5 @@
 import type { ComponentType } from 'react';
-import { CloudSun, Boxes, FolderKanban, AppWindow } from 'lucide-react';
+import { CloudSun, Boxes, FolderKanban, AppWindow, ServerCog } from 'lucide-react';
 
 export const PORTAL_ACTIVE_KEY = 'portal_last_project';
 
@@ -13,6 +13,7 @@ export interface PortalProject {
   gradient: string;
   status: ProjectStatus;
   badge?: string;
+  url?: string;
 }
 
 export const projects: PortalProject[] = [
@@ -36,13 +37,15 @@ export const projects: PortalProject[] = [
     status: 'upcoming',
   },
   {
-    id: 'proyecto-02',
-    title: 'Proyecto 02',
+    id: 'cloudops',
+    title: 'CloudOps Dashboard',
     description:
-      'Nuevo módulo institucional en etapa de planificación. Se habilitará próximamente.',
-    icon: FolderKanban,
-    gradient: 'from-violet-600 via-purple-500 to-fuchsia-500',
-    status: 'upcoming',
+      'Simulador académico de arquitectura AWS: planificación de soluciones, calculadora de costos, regiones globales, seguridad y topología de red VPC.',
+    icon: ServerCog,
+    gradient: 'from-sky-600 via-blue-500 to-indigo-500',
+    status: 'active',
+    badge: 'AWS',
+    url: 'https://cloudops-dashboard-yomar.vercel.app',
   },
   {
     id: 'proyecto-03',

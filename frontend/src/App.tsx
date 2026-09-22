@@ -14,8 +14,10 @@ import { CsvImporter } from './components/CsvImporter';
 import { SkeletonLoader } from './components/SkeletonLoader';
 import { Footer } from './components/Footer';
 import { PortalHome } from './components/PortalHome';
+import { ExternalProjectView } from './components/ExternalProjectView';
 import { PdfPreviewModal } from './components/PdfPreviewModal';
 import { projects, PORTAL_ACTIVE_KEY } from './data/projects';
+import type { PortalProject } from './data/projects';
 import { AuthProvider } from './context/AuthContext';
 import { AuthModal } from './components/Auth/AuthModal';
 import { AdminPanel } from './components/Admin/AdminPanel';
@@ -69,9 +71,16 @@ const AppInner: React.FC = () => {
       return true;
     }
   });
+  const [externalProject, setExternalProject] = useState<PortalProject | null>(null);
   const { isAdmin, isAuthenticated } = useAuth();
 
   const openProject = (projectId: string) => {
+    const target = projects.find((p) => p.id === projectId && p.status === 'active');
+    if (target?.url) {
+      setExternalProject(target);
+      window.scrollTo(0, 0);
+      return;
+    }
     try {
       sessionStorage.setItem(PORTAL_ACTIVE_KEY, projectId);
     } catch {
@@ -87,6 +96,7 @@ const AppInner: React.FC = () => {
     } catch {
       /* noop */
     }
+    setExternalProject(null);
     setIsPortal(true);
     window.scrollTo(0, 0);
   };
@@ -285,6 +295,15 @@ const AppInner: React.FC = () => {
     'Lima', 'Arequipa', 'Cusco', 'Piura', 'Trujillo',
     'Chiclayo', 'Iquitos', 'Huancayo', 'Puno', 'Tacna', 'Chimbote'
   ];
+
+  if (externalProject) {
+    return (
+      <ExternalProjectView
+        project={externalProject}
+        onBack={backToPortal}
+      />
+    );
+  }
 
   if (isPortal) {
     return (
