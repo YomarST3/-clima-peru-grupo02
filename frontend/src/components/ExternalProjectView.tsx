@@ -15,8 +15,8 @@ export const ExternalProjectView: React.FC<ExternalProjectViewProps> = ({
   const Icon = project.icon;
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100">
-      <header className="flex items-center justify-between gap-3 px-4 sm:px-6 py-3 border-b border-white/10 bg-slate-900/80">
+    <div className="h-screen h-dvh overflow-hidden flex flex-col bg-slate-950 text-slate-100">
+      <header className="shrink-0 flex items-center justify-between gap-3 px-4 sm:px-6 py-3 border-b border-white/10 bg-slate-900/80">
         <div className="flex items-center gap-3 min-w-0">
           <button
             onClick={onBack}
@@ -53,7 +53,7 @@ export const ExternalProjectView: React.FC<ExternalProjectViewProps> = ({
         )}
       </header>
 
-      <main className="flex-1 relative">
+      <main className="relative flex-1 min-h-0">
         {!loaded && (
           <div className="absolute inset-0 flex items-center justify-center text-xs text-slate-500">
             Cargando {project.title}…
@@ -64,7 +64,7 @@ export const ExternalProjectView: React.FC<ExternalProjectViewProps> = ({
             title={project.title}
             src={project.url}
             onLoad={() => setLoaded(true)}
-            className={`w-full h-full border-0 transition-opacity duration-300 ${
+            className={`block w-full h-full border-0 transition-opacity duration-300 ${
               loaded ? 'opacity-100' : 'opacity-0'
             }`}
           />
